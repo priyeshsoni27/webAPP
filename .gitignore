@@ -7,6 +7,10 @@
 /package.json
 .package.json
 
+# Package files
+*.jar
+
+
 # testing
 /coverage
 

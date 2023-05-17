@@ -8,26 +8,31 @@ import {
   Grid,
   Box,
   Button,
+  TextField,
 } from "@material-ui/core";
 
 import CustomCard from "./Common/Card";
-
+import SearchIcon from '@material-ui/icons/Search';
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions, cartDetails } from "../Redux/Action/cartActions";
+import SearchData from "../Redux/Reducers/SearchData";
+import {SearchActions} from "../Redux/Action/SearchActions"
 import Header from "./Header";
 
 const Home = () => {
   const [data, setData] = useState();
+  const [searchData,setSearchData]=useState();
   const dispatch = useDispatch();
 
-  const { productList, cardDetails } = useSelector((state) => {
+  const { productList, cardDetails ,filterData} = useSelector((state) => {
     return {
       productList: state?.cartReducers?.products,
       cardDetails: state?.AddtoCartReducer?.addedTOCart,
+      filterData: state?.SearchData?.sortedData,
     };
   });
 
-  console.log(cardDetails, "list");
+  console.log(filterData, "finaldatafilter");
 
   // let finalData=[]
   const getProductDetails = (productDetails) => {
@@ -42,6 +47,19 @@ const Home = () => {
     dispatch(cartDetails(body));
   };
 
+
+  const getFilteredData=(e,productList)=>{
+
+    setSearchData(e.target.value)
+    console.log("searhedData",productList,searchData)
+    let fileterData={
+      productList:productList,
+      queryEntered:e.target.value
+    }
+    dispatch(SearchActions(fileterData))
+
+  }
+
   console.log("prductttt", productList);
 
   useEffect(() => {
@@ -49,12 +67,17 @@ const Home = () => {
   }, []);
 
   console.log(data);
+  console.log("filter dtat",searchData)
 
   return (
     <Box sx={{ flexGrow: 1 }}>
+      
       <Header />
+      <TextField  label="Search the products" variant="outlined" defaultValue={setData} onChange={(e)=>getFilteredData(e,productList)}>
+      </TextField>
+      <SearchIcon/>
       <Grid container spacing={2} columns={{ xs: 3, sm: 8, md: 12 }}>
-        {productList?.map((cardItems) => {
+        {filterData?.map((cardItems) => {
           return (
             <Grid item xs={2} md={3} sm={4} key={cardItems?.id} rowSpacing="4">
               {/* <CustomCard  Title={cardItems?.title} Price={cardItems.price} 

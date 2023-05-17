@@ -23,7 +23,9 @@ const CartLeftContainer = () => {
     }
   })
 
+  console.log(cardDetails,"list of the cart items")
 
+ 
 
 
 
@@ -35,15 +37,16 @@ const CartLeftContainer = () => {
         return (
           <Grid item xs={2} md={2} sm={4} key={cardItems?.id}>
             <Card sx={{ maxWidth: 100 ,height:40}}>
-              <Box sx={{ height: "100", width: "50" }}>
-                 <img
+              {/* <Box sx={{ height: "100", width: "50" }}> */}
+                
+              {/* </Box> */}
+              <CardContent>
+              <img
                   src={cardItems?.image}
                   alt="Photos"
                   height="80"
                   title=""
                 />
-              </Box>
-              <CardContent>
                 <Typography
                   gutterBottom
                   variant="h7"

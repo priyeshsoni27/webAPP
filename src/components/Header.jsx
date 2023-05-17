@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 const Header = () => {
 
   const navigate=useNavigate()
+
+
+  
     const {productList,cardDetails}=useSelector((state)=>{
         return {
           productList:state?.cartReducers?.products,

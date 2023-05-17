@@ -12,8 +12,7 @@ const Cart = () => {
     <div >
     <Button variant="text" text="heloo" onClick={()=>navigate('/')}>{`Back-->`}</Button>
     <Grid >
-
-    <CartLeftContainer/>
+   <CartLeftContainer/>
     <CartRightContainer/>
 
     </Grid>

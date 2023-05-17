@@ -12,7 +12,7 @@ export const cartReducers=(state=intitalState,action)=>{
     switch(action.type){
         case CartActions.FETCH_DETAILS:
             return {    
-                ...state, products:action.payload
+                ...state, products:action.payload   
             };
        
         default:
